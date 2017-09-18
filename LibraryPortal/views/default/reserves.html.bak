@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+<div style="margin-bottom:50px;">
+
+{{if z==1:}}<h2><u>Error!</u></h2><h3>Student cannot request for reference books</h3>{{pass}}
+{{if flag==0 and z==0:}}<h2><u>Oops!</u></h2><h3>Requested book is not in database</h3>{{pass}}
+{{if b=='None':}}<h2><u>Error!</u></h2><h3>Must be logged in to reserve a book</h3>{{pass}}
+{{if flag==1 and z==0 and b!='None':}}<h3>Request Received!</h3>{{pass}}
+</div>

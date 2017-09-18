@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+
+<h2><u>Search for a book:</u></h2>
+<div style="width:300px;float:left">{{=form}}
+
+ <form action="demo_form.asp" method="get">
+<button type="submit" formaction="/finallib/default/user/register">Register</button>
+<button type="submit" formaction="/finallib/default/user">Login</button>
+<button type="submit" formaction="/finallib/default/user/profile">Profile</button>
+</form>
+</div>

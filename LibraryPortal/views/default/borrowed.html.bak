@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<h1>Borrowed Books Are:</h1>
+{{b='yay'}}
+{{for row in db(db.Borrow.id >0).select():}}
+{{=row}}{{=b}}
+{{if row.Title==a:}}
+{{=row.Title}}{{pass}}{{pass}}

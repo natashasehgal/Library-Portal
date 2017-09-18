@@ -1,0 +1,39 @@
+{{extend 'layout.html'}}
+{{BEAUTIFY}}
+{{c=0}}
+<h2><u>
+Search Results:<br>
+</u></h2>
+<style>
+    th {
+    font-size:1.1em;
+    background-color: #699C4D;
+    color: white;
+}
+td,th {
+    padding: 5px;
+}
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<div style="margin-bottom:40px">
+<table>
+<tr>
+    <th style="text-align:center">S.No<th style="text-align:center">Book ID</th><th style="text-align:center">Title</th><th>Author</th><th style="text-align:center">Year</th><th align="center">Published By</th><th style="text-align:center">Category</th><th style="text-align:center">Reference Book</th><th style="text-align:center">On Shelf</th>
+    </tr>
+
+{{for i in books:}}
+    {{if c%8==0:}}
+         <tr>
+             <td>{{=(c/8)+1}}</td>
+         {{pass}}
+    <td style="text-align:center">{{if i=='':}}{{i='--'}}{{pass}}{{if i=='<NULL>':}}{{i='--'}}{{pass}}{{if i=='True':}}{{i='Yes'}}{{pass}}{{if i=='False':}}{{i='No'}}{{pass}}{{=i}}</td>
+    {{c+=1}}
+   {{if c%8==0:}}
+        </tr>
+        {{pass}}
+    {{pass}}
+ </table>
+    
+</div>

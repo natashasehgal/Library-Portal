@@ -1,0 +1,89 @@
+{{extend 'layout.html'}}
+<style>
+    th {
+    font-size:0.9em;
+    background-color:#699C4D;
+    color: white;
+}
+td,th {
+    padding: 4px;
+}
+table, th, td {
+    border: 2px solid black,collapsed;
+}
+</style>
+{{if ids>0:}}
+
+<div style="float:left;margin-left:0px;margin-bottom:20px;margin-right:6.5px">
+<h3><u>Borrowed Books Are:</u></h3>
+{{c=1}}
+
+<table>
+    <th>SNo.</th>
+    <th>Book No</th>
+    <th style="float:center">Title</th>
+    <th style="float:center">Author</th>
+    <th>Year Of Publication</th>
+    <th>Published By</th>
+    <th>Categories</th>
+    <th>Due In</th>
+    {{for row in db(db.Borrow.id >0).select():}}
+    {{if row.User_Id==ids:}}
+    <tr>
+    <td>{{=c}}</td>
+        {{for row1 in db(db.Catalogue.id >0).select():}}
+        {{if row1.id==row.Book_Id:}}
+        <td>{{=row1.id}}</td>
+        <td>{{=row1.Title}}</td>
+        <td>{{=row1.Author}}</td>
+        <td style="text-align:center">{{=row1.Year_of_Publication}}</td>
+        <td style="text-align:center">{{=row1.Published_By}}</td>
+        <td>{{=row1.Categories}}</td>
+        {{a=days[row.Book_Id]}}
+        {{b=14-a}}
+        {{if b>0:}}<td>{{=b}} days</td>{{pass}}
+        {{if b<=0:}}{{b='Overdue!'}}<td>{{=b}}</td>{{pass}}
+    {{c=c+1}}
+    </tr>{{pass}}
+    {{pass}}{{pass}}{{pass}}
+</table>
+<br><br>
+<h3><u>Reserved Books Are:</u></h3>{{b=1}}
+{{c=9}}
+<table>
+<th>SNo.</th>
+<th>Book</th>
+<th style="float:center">Title</th>
+<th style="float:center">Author</th>
+<th>Year Of Publication</th>
+<th>Published By</th>
+<th>Categories</th>
+{{for row in db(db.Book_Requests.id >0).select():}}
+    {{if row.User_Id==ids:}}<tr>
+    {{for row1 in db(db.Catalogue.id>0).select():}}
+     {{if row.Book_Id==row1.id:}}<tr>
+        <td>{{=b}}</td>
+        <td>{{=row1.id}}</td>
+        <td style="text-align:center">{{=row1.Title}}</td>
+        <td style="text-align:center">{{=row1.Author}}</td>
+        <td style="text-align:center">{{=row1.Year_of_Publication}}</td>
+        <td style="text-align:center">{{=row1.Published_By}}</td>
+        <td>{{=row1.Categories}}</td>
+        {{b=b+1}}
+        </tr>{{pass}}{{pass}}
+    {{pass}}
+{{pass}}
+</table>
+<br><br>
+    </div>
+<h3><u>Cancel Reservation:</u></h3>{{=form}}
+<br>
+*If requsted books are borrowed they will be removed from requested list.<br>
+*Books can only be borrowed if it on shelf.<br>
+*Purchase requests are requests to the librarian to purchase certain books for the library.<br>
+*Requested books are books the user would like to borrow once they are available.<br>
+<br><h3><u>Purchase Request:</u></h3>{{=form1}}
+{{pass}}
+{{if ids < 1:}}Must be logged in to view borrowed and requested books.{{pass}}
+
+</div>

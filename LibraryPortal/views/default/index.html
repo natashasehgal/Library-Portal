@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<div style="float:left;margin-right:300px;margin-bottom:75px;">
+<h3><u>Search for a book:</u></h3>{{=form}}<br>
+<h3><u>Reserve book by ID</u></h3>{{=form1}}
+</div>
+
+<div style="float:right;margin-right:100px">
+    <form method="get"> 
+        <button type="submit" formaction="/LibraryPortal/default/user">Login</button>
+        <button type="submit" formaction="/LibraryPortal/default/logout">Logout</button>
+        <button type="submit" formaction="/LibraryPortal/default/user/profile">Profile</button>
+    </form>
+    <br>
+{{if au>0:}}<h3><u>Welcome {{=an}}!</u></h3>Account Number:{{=au}}<br>{{pass}}
+<br><h3><u>Click to view lists:</u></h3>{{=form2}}</div>

@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+<div style="float:center">
+<h4>This is the librarian interface</h4>
+<div style="float:right">    <form method="get"> 
+        <button type="submit" formaction="/LibraryPortal/default/user">Login</button>
+        <button type="submit" formaction="/LibraryPortal/default/logout">Logout</button>
+        <button type="submit" formaction="/LibraryPortal/default/user/profile">Profile</button>
+    </form></div>
+</div>
+<div style="float:left;">
+<h2><u>Add book to Catalogue:</u></h2>{{=form1}}
+</div>
+<div style=" vertical-align:top;float:right;margin-left:100px">
+    <br><br><h3><u>Borrow and Request:</u></h3>
+    <div style="float:left">{{=form}}</div><div style="float:right">{{=form2}}</div>
+</div>

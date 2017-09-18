@@ -1,0 +1,77 @@
+{{extend 'layout.html'}}
+<style>
+td,th {
+    padding: 5px;
+    font-size:1em;
+    text-align: center;
+}
+    th {
+    font-size:1.5em;
+    background-color:#699C4D;
+    color: white;
+}
+
+table, th, td {
+    border: 2px solid black collapse;
+}
+</style>
+<div style="margin-left:10px;margin-bottom:40px">
+{{if a=='View_borrowed':}}
+<h3><u>Borrowed Books Are:</u></h3><br>
+{{b=1}}
+<table>
+<th >SNo.</th><th>User Id</th><th>Book Id</th><th>Title</th><th>Author</th><th>Category</th>
+    {{for row in db(db.Catalogue.id >0).select():}}
+<tr>
+{{for row1 in db(db.Borrow.id >0).select():}}{{if row1.Book_Id==row.id:}}
+    <td>{{=b}}</td>
+    <td>{{=row1.User_Id}}</td>
+    <td>{{=row.id}}</td>
+    <td>{{=row.Title}}</td>
+    <td>{{=row.Author}}</td>
+    <td>{{=row.Categories}}</td>
+    {{b=b+1}}{{pass}}{{pass}}
+</tr>
+{{pass}}
+</table>
+
+{{pass}}
+
+{{if a=='View_requests':}}
+<h3><u>Reserved Books Are:</u></h3><br>
+{{b=1}}
+<table>
+<th align="center">SNo.</th><th align="center">User Id</th><th>Book Id</th><th>Title</th><th>Author</th><th>Category</th>
+    {{for row in db(db.Catalogue.id >0).select():}}
+<tr>
+{{for row1 in db(db.Book_Requests.id >0).select():}}{{if row1.Book_Id==row.id:}}
+    <td>{{=b}}</td>
+    <td>{{=row1.User_Id}}</td>
+    <td>{{=row.id}}</td>
+    <td>{{=row.Title}}</td>
+    <td>{{=row.Author}}</td>
+    <td>{{=row.Categories}}</td>
+    </tr>{{b=b+1}}{{pass}}{{pass}}
+{{pass}}
+</table>
+{{pass}}
+
+{{if a=='View':}}
+<h3><u>Requests for Purchase Are:</u></h3>
+<br>{{b=1}}
+<table>
+<th>SNo.</th><th>Title</th><th>Author</th><th>Year Of Publication</th><th>Published By</th><th>Categories</th>
+{{for row in db(db.Purchase_Requests.id >0).select():}}
+<tr>
+<td>{{=b}}</td>
+<td>{{=row.Title}}</td>
+<td>{{=row.Author}}</td>
+<td>{{=row.Year_of_Publication}}</td>
+<td>{{=row.Published_By}}</td>
+<td>{{=row.Categories}}</td>
+{{b=b+1}}
+</tr>
+{{pass}}
+</table>
+{{pass}}
+</div>

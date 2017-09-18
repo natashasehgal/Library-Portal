@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+<h2><u>{{=a}}</u></h2>
+<br>{{=form}}<br>
+{{if zz==1:}}<h2><u>Error!</u></h2><h3>Students cannot borrow reference books.</h3>{{pass}}
+
+{{if bor==1 and flag==0:}}<h2><u>Error!</u></h2><h3>This book does not exist in database.</h3>{{pass}}
+{{if bor==1 and zzz==0 and flag1==0:}}<h2><u>Error!</u></h2><h3>This user does not exist in database.</h3>{{pass}}
+
+{{if zzz==1:}}<h2><u>Error!</u></h2><h3>Book can only be borrowed if it is on shelf.</h3>{{pass}}
+{{if ret==1 and flag3==0:}}<h2><u>Error!</u></h2><h3>This book was not borrowed by this user. Record does not exist.</h3>{{pass}}
+
+{{if bor==1 and flag!=0 and zzz!=1 and zz!=1 and flag1==1:}}<h2><u>Success!</u></h2><h3>Book is borrowed.</h3>{{pass}}
+{{if ret==1 and flag3==1:}}<h2><u>Success!</u></h2><h3>Book is returned.</h3>{{pass}}
